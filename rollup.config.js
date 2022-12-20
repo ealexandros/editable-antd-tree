@@ -6,6 +6,8 @@ import dts from "rollup-plugin-dts";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import postcss from "rollup-plugin-postcss";
 
+import pkg from "./package.json" assert { type: "json" };
+
 const isProd = process.env.NODE_ENV === "production";
 
 export default [
@@ -33,12 +35,12 @@ export default [
     ],
     output: [
       {
-        file: "./dist/cjs/index.js",
+        file: pkg.main,
         format: "cjs",
         sourcemap: !isProd,
       },
       {
-        file: "./dist/esm/index.js",
+        file: pkg.module,
         format: "esm",
         sourcemap: !isProd,
       },
