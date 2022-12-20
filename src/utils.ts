@@ -6,6 +6,17 @@ export const deleteTreeNode = (
   tree: EditableTreeNode[],
   key: DataNode["key"]
 ) => {
+  const parentIndex = tree.findIndex((el) => el.key === key);
+
+  if (parentIndex !== -1) {
+    tree.splice(parentIndex, 1);
+    return;
+  }
+
+  deleteNestedNode(tree, key);
+};
+
+const deleteNestedNode = (tree: EditableTreeNode[], key: DataNode["key"]) => {
   for (let i = 0; i < tree.length; i++) {
     let node = tree[i];
 
@@ -18,17 +29,17 @@ export const deleteTreeNode = (
       return;
     }
 
-    deleteTreeNode(node.children, key);
+    deleteNestedNode(node.children, key);
   }
 };
 
-export const appendTreeChildren = (
+export const loadTreeChildren = (
   tree: EditableTreeNode[],
   key: React.Key,
   children: EditableTreeNode[]
 ): EditableTreeNode[] =>
   tree.map((node) => {
-    if (node.key === key) {
+    if (node.key === key && node.children) {
       return {
         ...node,
         children,
@@ -38,7 +49,7 @@ export const appendTreeChildren = (
     if (node.children) {
       return {
         ...node,
-        children: appendTreeChildren(node.children, key, children),
+        children: loadTreeChildren(node.children, key, children),
       };
     }
 

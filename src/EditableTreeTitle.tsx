@@ -93,33 +93,12 @@ export const EditableTreeTitle = ({
   };
 
   const handleDeleteClick = () => {
-    const isParent = treeData.some((el) => el.key === node.key);
-
-    if (isParent) {
-      setTreeData((prev) => [...prev.filter((el) => el.key !== node.key)]);
-    }
-
-    if (!isParent) {
-      deleteTreeNode(treeData, node.key);
-      setTreeData([...treeData]);
-    }
+    deleteTreeNode(treeData, node.key);
+    setTreeData([...treeData]);
 
     if (deleteNode?.event) {
       deleteNode.event(node);
     }
-  };
-
-  const handleEditToggle = (onOpen: boolean) => {
-    if (!node.title) {
-      handleDeleteClick();
-      return;
-    }
-
-    if (!onOpen) {
-      setInputValue(node.title as string);
-    }
-
-    setEdit((prev) => !prev);
   };
 
   const handleUpdateClick = () => {
@@ -147,6 +126,25 @@ export const EditableTreeTitle = ({
 
     handleEditToggle(true);
     setTreeData([...treeData]);
+  };
+
+  const handleEditToggle = (onOpen: boolean) => {
+    if (!node.title) {
+      handleDeleteClick();
+      return;
+    }
+
+    if (!onOpen) {
+      setInputValue(node.title as string);
+    }
+
+    setEdit((prev) => !prev);
+  };
+
+  const isActionDisabled = (
+    action?: boolean | ((node: EditableTreeNode) => boolean | undefined)
+  ) => {
+    return typeof action === "function" ? action(node) : !action;
   };
 
   useEffect(() => {
@@ -185,31 +183,23 @@ export const EditableTreeTitle = ({
           edit && "hidden"
         )}
       >
-        {(typeof createParent?.disable === "function"
-          ? !createParent?.disable(node)
-          : !createParent?.disable) &&
-          node.children && (
-            <Tooltip title={createParent?.caption || "Create Parent"}>
-              <button onClick={handleCreateParentClick}>
-                <AiOutlineSisternode />
-              </button>
-            </Tooltip>
-          )}
+        {isActionDisabled(createParent?.disable) && node.children && (
+          <Tooltip title={createParent?.caption || "Create Parent"}>
+            <button onClick={handleCreateParentClick}>
+              <AiOutlineSisternode />
+            </button>
+          </Tooltip>
+        )}
 
-        {(typeof createLeaf?.disable === "function"
-          ? !createLeaf?.disable(node)
-          : !createLeaf?.disable) &&
-          node.children && (
-            <Tooltip title={createLeaf?.caption || "Create Leaf"}>
-              <button onClick={handleCreateLeafClick}>
-                <AiOutlineSubnode />
-              </button>
-            </Tooltip>
-          )}
+        {isActionDisabled(createLeaf?.disable) && node.children && (
+          <Tooltip title={createLeaf?.caption || "Create Leaf"}>
+            <button onClick={handleCreateLeafClick}>
+              <AiOutlineSubnode />
+            </button>
+          </Tooltip>
+        )}
 
-        {(typeof updateNode?.disable === "function"
-          ? !updateNode?.disable(node)
-          : !updateNode?.disable) && (
+        {isActionDisabled(updateNode?.disable) && (
           <Tooltip title={updateNode?.caption || "Update Node"}>
             <button onClick={() => handleEditToggle(true)}>
               <RiPencilFill />
@@ -217,9 +207,7 @@ export const EditableTreeTitle = ({
           </Tooltip>
         )}
 
-        {(typeof deleteNode?.disable === "function"
-          ? !deleteNode?.disable(node)
-          : !deleteNode?.disable) && (
+        {isActionDisabled(deleteNode?.disable) && (
           <Tooltip title={deleteNode?.caption || "Delete Node"}>
             <button onClick={handleDeleteClick}>
               <MdDelete />

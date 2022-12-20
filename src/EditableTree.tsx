@@ -6,7 +6,7 @@ import { twMerge } from "tailwind-merge";
 import { v4 } from "uuid";
 import { EditableTreeTitle, TEditableTreeTitle } from "./EditableTreeTitle";
 import { TextInput } from "./TextInput";
-import { appendTreeChildren } from "./utils";
+import { loadTreeChildren } from "./utils";
 
 const sizes = {
   xs: "text-xs",
@@ -33,10 +33,8 @@ export type EditableTreeProps = {
   isLoading?: boolean;
   size?: keyof typeof sizes;
   createRootParent?: (node: EditableTreeNode) => void;
-  appendNodeChildren?: (
-    treeData: EditableTreeNode
-  ) => Promise<EditableTreeNode[] | void>;
-} & Omit<TreeProps, "switcherIcon" | "treeData"> &
+  loadData?: (treeData: EditableTreeNode) => Promise<EditableTreeNode[] | void>;
+} & Omit<TreeProps, "switcherIcon" | "treeData" | "loadData"> &
   TEditableTreeTitle;
 
 export const EditableTree = ({
@@ -51,7 +49,7 @@ export const EditableTree = ({
   createLeaf,
   createParent,
   createRootParent,
-  appendNodeChildren,
+  loadData,
   ...props
 }: EditableTreeProps) => {
   const [treeData, setTreeData] = useState<EditableTreeNode[]>(
@@ -97,12 +95,12 @@ export const EditableTree = ({
 
     let newChildren: EditableTreeNode[] = [];
 
-    if (appendNodeChildren) {
-      newChildren = (await appendNodeChildren(node as EditableTreeNode)) || [];
+    if (loadData) {
+      newChildren = (await loadData(node as EditableTreeNode)) || [];
     }
 
     if (newChildren.length) {
-      setTreeData((prev) => appendTreeChildren(prev, node.key, newChildren));
+      setTreeData((prev) => loadTreeChildren(prev, node.key, newChildren));
     }
   };
 
