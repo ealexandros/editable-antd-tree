@@ -1,0 +1,98 @@
+{
+  "name": "editable-antd-tree",
+  "version": "0.1.0",
+  "description": "This is an editable tree react component based on antd.",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "React",
+    "Next",
+    "Antd",
+    "Editable",
+    "Tree"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ealexandros/editable-antd-tree.git"
+  },
+  "files": [
+    "dist",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "npx rollup -c",
+    "prepublishOnly": "NODE_ENV=production pnpm run build",
+    "dev": "start-storybook -p 6006",
+    "prettier": "prettier --loglevel warn --write .",
+    "lint": "eslint . --fix",
+    "prepare": "husky install",
+    "clean": "rm -rf ./dist"
+  },
+  "dependencies": {
+    "antd": "^5.0.0",
+    "postcss": "^8.4.20",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.7.1",
+    "tailwind-merge": "^1.8.0",
+    "tailwindcss": "^3.2.4",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@rollup/plugin-commonjs": "^24.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-typescript": "^8.3.3",
+    "@storybook/addon-actions": "^6.5.13",
+    "@storybook/addon-essentials": "^6.5.13",
+    "@storybook/addon-links": "^6.5.13",
+    "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/addons": "^6.5.13",
+    "@storybook/react": "^6.5.13",
+    "@types/node": "^18.11.17",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@types/uuid": "^9.0.0",
+    "@typescript-eslint/parser": "^5.47.0",
+    "autoprefixer": "^10.4.13",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.11",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "require-from-string": "^2.0.2",
+    "rollup": "^3.7.5",
+    "rollup-plugin-cleaner": "^1.0.0",
+    "rollup-plugin-dts": "^5.0.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "tsconfig-paths-webpack-plugin": "^4.0.0",
+    "tslib": "^2.4.1",
+    "typescript": "4.8.3",
+    "webpack": "^5.75.0"
+  },
+  "peerDependencies": {
+    "antd": "^5.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "packageManager": "pnpm@7.15.0",
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "eslint --fix"
+    ],
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write"
+    ]
+  }
+}

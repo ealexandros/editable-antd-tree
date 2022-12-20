@@ -1,0 +1,8 @@
+.vscode/
+node_modules/
+
+.npmrc
+.nvmrc
+.prettier
+.prettierignore
+.gitignore
