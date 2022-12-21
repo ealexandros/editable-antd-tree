@@ -1,5 +1,6 @@
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
+import terser from "@rollup/plugin-terser";
 import typescript from "@rollup/plugin-typescript";
 import cleaner from "rollup-plugin-cleaner";
 import dts from "rollup-plugin-dts";
@@ -18,6 +19,7 @@ export default [
       typescript({
         tsconfig: "./tsconfig.json",
       }),
+      isProd && terser(),
       cleaner({
         targets: ["./dist/"],
       }),
@@ -49,7 +51,7 @@ export default [
   {
     input: "./dist/esm/index.d.ts",
     output: [{ file: "dist/index.d.ts", format: "esm" }],
-    plugins: [dts()],
+    plugins: [isProd ? dts.default() : dts()],
     external: [/\.(css|less|scss)$/],
   },
 ];
