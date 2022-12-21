@@ -1,3 +1,3 @@
 import "./styles.css";
 
-export * from "./EditableTree";
+export * from "./EditableAntdTree";

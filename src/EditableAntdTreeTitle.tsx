@@ -6,35 +6,35 @@ import { GrFormClose } from "react-icons/gr";
 import { MdDelete } from "react-icons/md";
 import { RiPencilFill } from "react-icons/ri";
 import { twMerge } from "tailwind-merge";
-import { v4 } from "uuid";
-import { EditableTreeNode } from "./EditableTree";
+import { v4 as uuidv4 } from "uuid";
+import { EditableAntdTreeNode } from "./EditableAntdTree";
 import { TextInput } from "./TextInput";
 import { deleteTreeNode } from "./utils";
 
 type EditableTreeTitleProps = {
-  treeData: EditableTreeNode[];
-  setTreeData: React.Dispatch<React.SetStateAction<EditableTreeNode[]>>;
+  treeData: EditableAntdTreeNode[];
+  setTreeData: React.Dispatch<React.SetStateAction<EditableAntdTreeNode[]>>;
   expandKey: Function;
-  node: EditableTreeNode;
+  node: EditableAntdTreeNode;
   deleteNode?: {
     caption?: string;
-    disable?: boolean | ((node: EditableTreeNode) => boolean | undefined);
-    event?: (node: EditableTreeNode) => void;
+    disable?: boolean | ((node: EditableAntdTreeNode) => boolean | undefined);
+    event?: (node: EditableAntdTreeNode) => void;
   };
   updateNode?: {
     caption?: string;
-    disable?: boolean | ((node: EditableTreeNode) => boolean | undefined);
-    event?: (node: EditableTreeNode) => void;
+    disable?: boolean | ((node: EditableAntdTreeNode) => boolean | undefined);
+    event?: (node: EditableAntdTreeNode) => void;
   };
   createLeaf?: {
     caption?: string;
-    disable?: boolean | ((node: EditableTreeNode) => boolean | undefined);
-    event?: (node: EditableTreeNode) => void;
+    disable?: boolean | ((node: EditableAntdTreeNode) => boolean | undefined);
+    event?: (node: EditableAntdTreeNode) => void;
   };
   createParent?: {
     caption?: string;
-    disable?: boolean | ((node: EditableTreeNode) => boolean | undefined);
-    event?: (node: EditableTreeNode) => void;
+    disable?: boolean | ((node: EditableAntdTreeNode) => boolean | undefined);
+    event?: (node: EditableAntdTreeNode) => void;
   };
 };
 
@@ -69,7 +69,7 @@ export const EditableTreeTitle = ({
       key: "",
       title: null,
       isLeaf: true,
-      parent: node.id,
+      parent: node.key,
     });
     setTreeData([...treeData]);
   };
@@ -86,7 +86,7 @@ export const EditableTreeTitle = ({
       key: "",
       title: null,
       isLeaf: false,
-      parent: node.id,
+      parent: node.key,
       children: [],
     });
     setTreeData([...treeData]);
@@ -110,7 +110,7 @@ export const EditableTreeTitle = ({
     }
 
     node.title = inputValue;
-    node.key = v4();
+    node.key = uuidv4();
 
     if (!initValue && !node.children && createLeaf?.event) {
       createLeaf?.event(node);
@@ -142,7 +142,7 @@ export const EditableTreeTitle = ({
   };
 
   const isActionDisabled = (
-    action?: boolean | ((node: EditableTreeNode) => boolean | undefined)
+    action?: boolean | ((node: EditableAntdTreeNode) => boolean | undefined)
   ) => {
     return typeof action === "function" ? action(node) : !action;
   };

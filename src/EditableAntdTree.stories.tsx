@@ -1,14 +1,14 @@
 import { Meta, Story } from "@storybook/react";
 import React from "react";
 import {
-  EditableTree,
-  EditableTreeNode,
-  EditableTreeProps,
-} from "./EditableTree";
+  EditableAntdTree,
+  EditableAntdTreeNode,
+  EditableAntdTreeProps,
+} from "./EditableAntdTree";
 
 const meta: Meta = {
-  title: "EditableTree",
-  component: EditableTree,
+  title: "EditableAntdTree",
+  component: EditableAntdTree,
   parameters: {
     controls: { expanded: true },
   },
@@ -16,7 +16,7 @@ const meta: Meta = {
 
 export default meta;
 
-const treeData: EditableTreeNode[] = [
+const treeData: EditableAntdTreeNode[] = [
   {
     title: "parent 1",
     key: "0-0",
@@ -83,8 +83,8 @@ const treeData: EditableTreeNode[] = [
   },
 ];
 
-const Template: Story<EditableTreeProps> = (props) => (
-  <EditableTree {...props} />
+const Template: Story<EditableAntdTreeProps> = (props) => (
+  <EditableAntdTree {...props} />
 );
 
 export const Preview = Template.bind({});

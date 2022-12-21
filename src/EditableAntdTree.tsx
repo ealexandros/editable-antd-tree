@@ -3,8 +3,8 @@ import { DataNode, EventDataNode, TreeProps } from "antd/lib/tree";
 import React, { useState } from "react";
 import { TiArrowSortedDown } from "react-icons/ti";
 import { twMerge } from "tailwind-merge";
-import { v4 } from "uuid";
-import { EditableTreeTitle, TEditableTreeTitle } from "./EditableTreeTitle";
+import { v4 as uuidv4 } from "uuid";
+import { EditableTreeTitle, TEditableTreeTitle } from "./EditableAntdTreeTitle";
 import { TextInput } from "./TextInput";
 import { loadTreeChildren } from "./utils";
 
@@ -16,34 +16,33 @@ const sizes = {
   xl: "text-xl",
 };
 
-export type EditableTreeNode = {
-  id?: string;
-  key: DataNode["key"];
+export type EditableAntdTreeNode = Omit<
+  DataNode,
+  "title" | "children" | "key"
+> & {
+  key: string;
   title?: string | null;
-  parent?: DataNode["key"];
-  isLeaf?: DataNode["isLeaf"];
-  children?: EditableTreeNode[];
-  disabled?: boolean;
-  selectable?: boolean;
+  parent?: string;
+  children?: EditableAntdTreeNode[];
 };
 
-export type EditableTreeProps = {
-  treeData: EditableTreeNode[];
+export type EditableAntdTreeProps = {
+  treeData: EditableAntdTreeNode[];
   switcherIcon?: React.ReactNode;
-  isLoading?: boolean;
   size?: keyof typeof sizes;
-  createRootParent?: (node: EditableTreeNode) => void;
-  loadData?: (treeData: EditableTreeNode) => Promise<EditableTreeNode[] | void>;
+  createRootParent?: (node: EditableAntdTreeNode) => void;
+  loadData?: (
+    treeData: EditableAntdTreeNode
+  ) => Promise<EditableAntdTreeNode[] | void>;
 } & Omit<TreeProps, "switcherIcon" | "treeData" | "loadData"> &
   TEditableTreeTitle;
 
-export const EditableTree = ({
+export const EditableAntdTree = ({
   treeData: initTreeData,
   size = "sm",
   switcherIcon = (
     <TiArrowSortedDown size="2.75em" className="text-gray-600 -mt-[0.2em]" />
   ),
-  isLoading,
   deleteNode,
   updateNode,
   createLeaf,
@@ -51,8 +50,8 @@ export const EditableTree = ({
   createRootParent,
   loadData,
   ...props
-}: EditableTreeProps) => {
-  const [treeData, setTreeData] = useState<EditableTreeNode[]>(
+}: EditableAntdTreeProps) => {
+  const [treeData, setTreeData] = useState<EditableAntdTreeNode[]>(
     initTreeData || []
   );
   const [expandedKeys, setExpandedKeys] = useState<React.Key[]>([]);
@@ -72,8 +71,7 @@ export const EditableTree = ({
     const newTreeData = [
       ...treeData,
       {
-        key: v4(),
-        id: "",
+        key: uuidv4(),
         title: parentTitleInput,
         isLeaf: false,
         children: [],
@@ -89,14 +87,14 @@ export const EditableTree = ({
   };
 
   const handleLoadData = async (node: EventDataNode<DataNode>) => {
-    if (node.children?.length) {
+    if (node.children?.length || node.isLeaf) {
       return;
     }
 
-    let newChildren: EditableTreeNode[] = [];
+    let newChildren: EditableAntdTreeNode[] = [];
 
     if (loadData) {
-      newChildren = (await loadData(node as EditableTreeNode)) || [];
+      newChildren = (await loadData(node as EditableAntdTreeNode)) || [];
     }
 
     if (newChildren.length) {
