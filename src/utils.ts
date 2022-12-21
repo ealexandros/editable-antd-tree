@@ -1,10 +1,9 @@
-import { DataNode } from "antd/lib/tree";
 import React from "react";
-import { EditableAntdTree } from "./EditableAntdTree";
+import { EditableAntdTreeNode } from "./EditableAntdTree";
 
 export const deleteTreeNode = (
-  tree: EditableAntdTree[],
-  key: DataNode["key"]
+  tree: EditableAntdTreeNode[],
+  key: EditableAntdTreeNode["key"]
 ) => {
   const parentIndex = tree.findIndex((el) => el.key === key);
 
@@ -16,7 +15,10 @@ export const deleteTreeNode = (
   deleteNestedNode(tree, key);
 };
 
-const deleteNestedNode = (tree: EditableAntdTree[], key: DataNode["key"]) => {
+const deleteNestedNode = (
+  tree: EditableAntdTreeNode[],
+  key: EditableAntdTreeNode["key"]
+) => {
   for (let i = 0; i < tree.length; i++) {
     let node = tree[i];
 
@@ -34,10 +36,10 @@ const deleteNestedNode = (tree: EditableAntdTree[], key: DataNode["key"]) => {
 };
 
 export const loadTreeChildren = (
-  tree: EditableAntdTree[],
+  tree: EditableAntdTreeNode[],
   key: React.Key,
-  children: EditableAntdTree[]
-): EditableAntdTree[] =>
+  children: EditableAntdTreeNode[]
+): EditableAntdTreeNode[] =>
   tree.map((node) => {
     if (node.key === key && node.children) {
       return {

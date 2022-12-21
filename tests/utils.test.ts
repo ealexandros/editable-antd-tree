@@ -1,7 +1,7 @@
-import { EditableTreeNode } from "../src/EditableTree";
+import { EditableAntdTreeNode } from "../src/EditableAntdTree";
 import { deleteTreeNode, loadTreeChildren } from "../src/utils";
 
-let tree: EditableTreeNode[] = [];
+let tree: EditableAntdTreeNode[] = [];
 
 describe("DeleteTreeNode", () => {
   beforeEach(() => {
@@ -30,7 +30,7 @@ describe("DeleteTreeNode", () => {
   it("delete nested node", () => {
     deleteTreeNode(tree, "0-0-0");
 
-    const expected: EditableTreeNode[] = [
+    const expected: EditableAntdTreeNode[] = [
       {
         title: "parent 1",
         key: "0-0",
@@ -44,7 +44,7 @@ describe("DeleteTreeNode", () => {
   it("delete root node", () => {
     deleteTreeNode(tree, "0-0");
 
-    const expected: EditableTreeNode[] = [];
+    const expected: EditableAntdTreeNode[] = [];
 
     expect(tree).toEqual(expected);
   });
@@ -85,7 +85,7 @@ describe("LoadTreeChildren", () => {
       },
     ]);
 
-    const expected: EditableTreeNode[] = [
+    const expected: EditableAntdTreeNode[] = [
       {
         title: "parent 1",
         key: "0-0",
@@ -118,7 +118,7 @@ describe("LoadTreeChildren", () => {
       },
     ]);
 
-    const expected: EditableTreeNode[] = [
+    const expected: EditableAntdTreeNode[] = [
       {
         title: "parent 1",
         key: "0-0",
@@ -153,7 +153,7 @@ describe("LoadTreeChildren", () => {
       ]
     );
 
-    const expected: EditableTreeNode[] = [
+    const expected: EditableAntdTreeNode[] = [
       {
         title: "parent 1",
         key: "0-0",
