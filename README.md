@@ -4,11 +4,7 @@ This is an editable tree based on antd components.
 
 ### Preview
 
-<div style="display: flex;">
-  <img src="./docs/editable-tree-preview.png" alt="drawing" style="width:300px;"/>
-
-  <img src="./docs/edit-action-preview.png" alt="drawing" style="width:300px;margin-left: 1rem;"/>
-</div>
+![preview](./docs/editable-antd-tree-preview.png)
 
 ## 📦 Install
 
@@ -20,7 +16,7 @@ $ npm editable-antd-tree
 $ yarn editable-antd-tree
 ```
 
-> P.S: They are not up yet.
+> The package can be found [here](https://www.npmjs.com/package/editable-antd-tree).
 
 ## 🔨 Usage
 
