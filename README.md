@@ -1,7 +1,10 @@
-<h1 align="center" style="border-bottom: none">
-  <font size="7">🌴 EditableAntdTree 🌴</font>
-</h1>
-<h4 align="center">This is an editable tree based on antd components.</h4>
+<p align="center" style="border-bottom: none">
+  <picture >
+    <source media="(prefers-color-scheme: dark)" srcset="./docs/editable-antd-tree-logo-light.png">
+    <img width="500" alt="editable-antd-tree-logo-light" src="./docs/editable-antd-tree-logo-dark.png">
+  </picture>
+</p>
+<p align="center">This is an editable tree based on antd components.</p>
 
 <br/>
 
