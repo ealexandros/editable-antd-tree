@@ -1,4 +1,4 @@
-<h1 align="center">
+<h1 align="center" style="border-bottom: none">
   <font size="7">🌴 EditableAntdTree 🌴</font>
 </h1>
 <h4 align="center">This is an editable tree based on antd components.</h4>
@@ -14,7 +14,7 @@
 
 <br/>
 
-## 📖 Preview
+### 📖 Preview
 
 ![preview](./docs/editable-antd-tree-preview.png)
 
@@ -99,7 +99,7 @@ By downloading this package, there is a direct compatability with `typescript`.
   <tbody>
     <tr> 
       <th>treeData</th>
-      <th>This property is the required and indicated the inital tree. (There is a section which shows the properties of a TreeData)</th>
+      <th>This property indicates the inital tree data. (There is a section which shows all the fields of TreeData fields)</th>
       <th style="text-align: center">EditableTreeNode[]</th>
       <th style="text-align: center">yes</th>
     </tr> 
@@ -117,7 +117,7 @@ By downloading this package, there is a direct compatability with `typescript`.
     </tr> 
     <tr> 
       <th>loadData</th>
-      <th>This property is a Function which runs whenever a TreeNode in not a leaf node & it has no children. Its core function is to load data async and append them to a TreeNode as children.</th>
+      <th>This property is a Function that runs whenever a TreeNode is not a leaf node & it has no children. Its core function is to load data async and replace them into the TreeNode children field.</th>
       <th style="text-align: center">Function</th>
       <th style="text-align: center">no</th>
     </tr> 
@@ -174,7 +174,7 @@ By downloading this package, there is a direct compatability with `typescript`.
     </tr> 
     <tr> 
       <th>disable</th>
-      <th>This indicated if the action should be disabled.</th>
+      <th>This property indicated if the action should be disabled.</th>
       <th style="text-align: center">boolean | Function</th>
       <th style="text-align: center">no</th>
     </tr> 
@@ -207,7 +207,7 @@ By downloading this package, there is a direct compatability with `typescript`.
     </tr> 
     <tr> 
       <th>disable</th>
-      <th>This indicated if the action should be disabled.</th>
+      <th>This property indicated if the action should be disabled.</th>
       <th style="text-align: center">boolean | Function</th>
       <th style="text-align: center">no</th>
     </tr> 
@@ -240,7 +240,7 @@ By downloading this package, there is a direct compatability with `typescript`.
     </tr> 
     <tr> 
       <th>disable</th>
-      <th>This indicated if the action should be disabled.</th>
+      <th>This property indicated if the action should be disabled.</th>
       <th style="text-align: center">boolean | Function</th>
       <th style="text-align: center">no</th>
     </tr> 
@@ -273,7 +273,7 @@ By downloading this package, there is a direct compatability with `typescript`.
     </tr> 
     <tr> 
       <th>disable</th>
-      <th>This indicated if the action should be disabled.</th>
+      <th>This property indicated if the action should be disabled.</th>
       <th style="text-align: center">boolean | Function</th>
       <th style="text-align: center">no</th>
     </tr> 
@@ -302,25 +302,25 @@ By downloading this package, there is a direct compatability with `typescript`.
   <tbody>
     <tr> 
       <th>key</th>
-      <th>This is used as a unique identifier.</th>
+      <th>This field is used as a unique identifier.</th>
       <th style="text-align: center">string</th>
       <th style="text-align: center">yes</th>
     </tr> 
     <tr> 
       <th>title</th>
-      <th>This propetry will be displayed in the tree.</th>
+      <th>This field is displayed in the tree.</th>
       <th style="text-align: center">string</th>
       <th style="text-align: center">no</th>
     </tr> 
     <tr> 
       <th>parent</th>
-      <th>This points to the parent key.</th>
+      <th>This field points to the parent key.</th>
       <th style="text-align: center">string</th>
       <th style="text-align: center">no</th>
     </tr> 
     <tr> 
       <th>children</th>
-      <th>This contains nested tree nodes.</th>
+      <th>This field contains more nested tree nodes.</th>
       <th style="text-align: center">EditableTreeNode[]</th>
       <th style="text-align: center">no</th>
     </tr> 
