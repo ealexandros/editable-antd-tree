@@ -1,8 +1,20 @@
-<h1 align="center" style="font-size: 3.5em">🌴 EditableAntdTree 🌴</h1>
+<h1 align="center">
+  <font size="7">🌴 EditableAntdTree 🌴</font>
+</h1>
+<h4 align="center">This is an editable tree based on antd components.</h4>
 
-This is an editable tree based on antd components.
+<br/>
 
-### Preview
+<p align="center">
+  <img src="https://img.shields.io/badge/node-%3E%3D16.0.0-blue" alt="node version" />
+  <img src="https://img.shields.io/badge/pnpm-^7.0.0-blue?logo=pnpm" alt="pnpm version" />
+  <img src="https://img.shields.io/badge/react->%3D16.9.0-lighgreen?logo=react" alt="react version" />
+  <img src="https://img.shields.io/badge/antd-^5.0.0-lighgreen" alt="antd version" />
+</p>
+
+<br/>
+
+## 📖 Preview
 
 ![preview](./docs/editable-antd-tree-preview.png)
 
