@@ -67,7 +67,7 @@ export const EditableAntdTree = ({
   );
   const [expandedKeys, setExpandedKeys] = useState<React.Key[]>([]);
 
-  const [parentTitleInput, setParentTitleInput] = useState("");
+  const [rootNodeTitleInput, setRootNodeTitleInput] = useState("");
 
   const titleParams = {
     treeData,
@@ -79,18 +79,22 @@ export const EditableAntdTree = ({
   };
 
   const handleCreateRootNode = (isLeaf: boolean) => {
+    if (!rootNodeTitleInput) {
+      return;
+    }
+
     const newTreeData = [
       ...treeData,
       {
         key: uuidv4(),
-        title: parentTitleInput,
+        title: rootNodeTitleInput,
         isLeaf,
         ...(!isLeaf ? { children: [] } : {}),
       },
     ];
 
     setTreeData(newTreeData);
-    setParentTitleInput("");
+    setRootNodeTitleInput("");
 
     if (isLeaf && createRootLeaf?.action) {
       createRootLeaf.action(newTreeData[newTreeData.length - 1]);
@@ -152,8 +156,8 @@ export const EditableAntdTree = ({
         )}
       >
         <TextInput
-          value={parentTitleInput}
-          onChange={(value) => setParentTitleInput(value)}
+          value={rootNodeTitleInput}
+          onChange={(value) => setRootNodeTitleInput(value)}
           className={twMerge(
             "outline-none p-1 border-none opacity-70 hover:bg-gray-100 focus::bg-gray-50 rounded-sm duration-150 transition-all",
             sizes[size]
