@@ -125,9 +125,15 @@ By downloading this package, there is a direct compatability with `typescript`.
       <th style="text-align: center">no</th>
     </tr> 
     <tr> 
+      <th>createRootLeaf</th>
+      <th>This object contains some properties that are explained in the sections below.</th>
+      <th style="text-align: center">Object</th>
+      <th style="text-align: center">no</th>
+    </tr> 
+    <tr> 
       <th>createRootParent</th>
-      <th>This property is a Function that runs after a root parent node the is created.</th>
-      <th style="text-align: center">Function</th>
+      <th>This object contains some properties that are explained in the sections below.</th>
+      <th style="text-align: center">Object</th>
       <th style="text-align: center">no</th>
     </tr> 
     <tr> 
@@ -152,6 +158,72 @@ By downloading this package, there is a direct compatability with `typescript`.
       <th>createParent</th>
       <th>This object contains some properties that are explained in the sections below.</th>
       <th style="text-align: center">Object</th>
+      <th style="text-align: center">no</th>
+    </tr> 
+  </tbody>
+</table>
+
+### Create Root Leaf
+
+<table>
+  <thead>
+    <tr> 
+      <th>Property</th>
+      <th>Description</th>
+      <th style="text-align: center">Type</th>
+      <th>Required</th>
+    </tr> 
+  </thead>
+  <tbody>
+    <tr> 
+      <th>caption</th>
+      <th>This property shows what should be displayed when a user hovers over the action.</th>
+      <th style="text-align: center">string</th>
+      <th style="text-align: center">no</th>
+    </tr> 
+    <tr> 
+      <th>disable</th>
+      <th>This property indicated if the action should be disabled.</th>
+      <th style="text-align: center">boolean</th>
+      <th style="text-align: center">no</th>
+    </tr> 
+    <tr> 
+      <th>event</th>
+      <th>This property is a Function that runs after the action has been pressed.</th>
+      <th style="text-align: center">Function</th>
+      <th style="text-align: center">no</th>
+    </tr> 
+  </tbody>
+</table>
+
+### Create Root Parent
+
+<table>
+  <thead>
+    <tr> 
+      <th>Property</th>
+      <th>Description</th>
+      <th style="text-align: center">Type</th>
+      <th>Required</th>
+    </tr> 
+  </thead>
+  <tbody>
+    <tr> 
+      <th>caption</th>
+      <th>This property shows what should be displayed when a user hovers over the action.</th>
+      <th style="text-align: center">string</th>
+      <th style="text-align: center">no</th>
+    </tr> 
+    <tr> 
+      <th>disable</th>
+      <th>This property indicated if the action should be disabled.</th>
+      <th style="text-align: center">boolean</th>
+      <th style="text-align: center">no</th>
+    </tr> 
+    <tr> 
+      <th>event</th>
+      <th>This property is a Function that runs after the action has been pressed.</th>
+      <th style="text-align: center">Function</th>
       <th style="text-align: center">no</th>
     </tr> 
   </tbody>

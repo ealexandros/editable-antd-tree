@@ -1,6 +1,7 @@
-import { Tree } from "antd";
+import { Tooltip, Tree } from "antd";
 import { DataNode, EventDataNode, TreeProps } from "antd/lib/tree";
 import React, { useState } from "react";
+import { AiOutlineSisternode, AiOutlineSubnode } from "react-icons/ai";
 import { TiArrowSortedDown } from "react-icons/ti";
 import { twMerge } from "tailwind-merge";
 import { v4 as uuidv4 } from "uuid";
@@ -30,7 +31,16 @@ export type EditableAntdTreeProps = {
   treeData: EditableAntdTreeNode[];
   switcherIcon?: React.ReactNode;
   size?: keyof typeof sizes;
-  createRootParent?: (node: EditableAntdTreeNode) => void;
+  createRootLeaf?: {
+    caption?: string;
+    disable?: boolean;
+    action?: (node: EditableAntdTreeNode) => void;
+  };
+  createRootParent?: {
+    caption?: string;
+    disable?: boolean;
+    action?: (node: EditableAntdTreeNode) => void;
+  };
   loadData?: (
     treeData: EditableAntdTreeNode
   ) => Promise<EditableAntdTreeNode[] | void>;
@@ -47,6 +57,7 @@ export const EditableAntdTree = ({
   updateNode,
   createLeaf,
   createParent,
+  createRootLeaf,
   createRootParent,
   loadData,
   ...props
@@ -67,22 +78,26 @@ export const EditableAntdTree = ({
     createParent,
   };
 
-  const handleCreateParentEnter = async () => {
+  const handleCreateRootNode = (isLeaf: boolean) => {
     const newTreeData = [
       ...treeData,
       {
         key: uuidv4(),
         title: parentTitleInput,
-        isLeaf: false,
-        children: [],
+        isLeaf,
+        ...(!isLeaf ? { children: [] } : {}),
       },
     ];
 
     setTreeData(newTreeData);
     setParentTitleInput("");
 
-    if (createRootParent) {
-      createRootParent(newTreeData[newTreeData.length - 1]);
+    if (isLeaf && createRootLeaf?.action) {
+      createRootLeaf.action(newTreeData[newTreeData.length - 1]);
+    }
+
+    if (!isLeaf && createRootParent?.action) {
+      createRootParent.action(newTreeData[newTreeData.length - 1]);
     }
   };
 
@@ -130,15 +145,39 @@ export const EditableAntdTree = ({
         {...props}
       />
 
-      <TextInput
-        value={parentTitleInput}
-        onChange={(value) => setParentTitleInput(value)}
+      <div
         className={twMerge(
-          "outline-none p-1 border-none opacity-70 hover:bg-gray-100 focus::bg-gray-50 rounded-sm duration-150 transition-all",
+          "flex items-center w-max space-x-2 pl-1",
           sizes[size]
         )}
-        onEnter={handleCreateParentEnter}
-      />
+      >
+        <TextInput
+          value={parentTitleInput}
+          onChange={(value) => setParentTitleInput(value)}
+          className={twMerge(
+            "outline-none p-1 border-none opacity-70 hover:bg-gray-100 focus::bg-gray-50 rounded-sm duration-150 transition-all",
+            sizes[size]
+          )}
+        />
+
+        <div className="space-x-2">
+          {!createRootParent?.disable && (
+            <button onClick={() => handleCreateRootNode(false)}>
+              <Tooltip title={createRootParent?.caption || "Create Parent"}>
+                <AiOutlineSisternode />
+              </Tooltip>
+            </button>
+          )}
+
+          {!createRootLeaf?.disable && (
+            <button>
+              <Tooltip title={createRootLeaf?.caption || "Create Leaf"}>
+                <AiOutlineSubnode onClick={() => handleCreateRootNode(true)} />
+              </Tooltip>
+            </button>
+          )}
+        </div>
+      </div>
     </>
   );
 };

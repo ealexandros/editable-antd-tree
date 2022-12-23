@@ -121,6 +121,18 @@ Large.args = {
   size: "xl",
 };
 
+export const DisableActions = Template.bind({});
+DisableActions.args = {
+  treeData: treeData,
+  defaultExpandedKeys: ["0-0-0"],
+  createParent: {
+    disable: true,
+  },
+  createRootParent: {
+    disable: true,
+  },
+};
+
 export const Empty = Template.bind({});
 Empty.args = {
   treeData: [],
