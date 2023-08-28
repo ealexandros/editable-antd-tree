@@ -29,6 +29,7 @@ export type EditableAntdTreeNode = Omit<
 
 export type EditableAntdTreeProps = {
   treeData: EditableAntdTreeNode[];
+  onTreeChange: (tree: EditableAntdTreeNode[]) => void;
   switcherIcon?: React.ReactNode;
   size?: keyof typeof sizes;
   createRootLeaf?: {
@@ -53,6 +54,7 @@ export const EditableAntdTree = ({
   switcherIcon = (
     <TiArrowSortedDown size="2.75em" className="text-gray-600 -mt-[0.2em]" />
   ),
+  onTreeChange,
   deleteNode,
   updateNode,
   createLeaf,
@@ -69,9 +71,23 @@ export const EditableAntdTree = ({
 
   const [rootNodeTitleInput, setRootNodeTitleInput] = useState("");
 
+  const updateTreeData = (
+    newTreeData:
+      | EditableAntdTreeNode[]
+      | ((prevData: EditableAntdTreeNode[]) => EditableAntdTreeNode[])
+  ) => {
+    setTreeData((prevData) => {
+      const updatedData =
+        typeof newTreeData === "function" ? newTreeData(prevData) : newTreeData;
+      onTreeChange(updatedData);
+
+      return updatedData;
+    });
+  };
+
   const titleParams = {
     treeData,
-    setTreeData,
+    updateTreeData,
     deleteNode,
     updateNode,
     createLeaf,
@@ -93,7 +109,7 @@ export const EditableAntdTree = ({
       },
     ];
 
-    setTreeData(newTreeData);
+    updateTreeData(newTreeData);
     setRootNodeTitleInput("");
 
     if (isLeaf && createRootLeaf?.action) {
@@ -117,7 +133,7 @@ export const EditableAntdTree = ({
     }
 
     if (newChildren.length) {
-      setTreeData((prev) => loadTreeChildren(prev, node.key, newChildren));
+      updateTreeData((prev) => loadTreeChildren(prev, node.key, newChildren));
     }
   };
 

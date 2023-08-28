@@ -119,6 +119,7 @@ Large.args = {
   treeData: treeData,
   defaultExpandedKeys: ["0-0-0"],
   size: "xl",
+  onTreeChange: (treeData) => console.log(treeData),
 };
 
 export const DisableActions = Template.bind({});
