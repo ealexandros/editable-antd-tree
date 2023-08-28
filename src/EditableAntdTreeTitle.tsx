@@ -13,7 +13,7 @@ import { deleteTreeNode } from "./utils";
 
 type EditableTreeTitleProps = {
   treeData: EditableAntdTreeNode[];
-  setTreeData: React.Dispatch<React.SetStateAction<EditableAntdTreeNode[]>>;
+  updateTreeData: React.Dispatch<React.SetStateAction<EditableAntdTreeNode[]>>;
   expandKey: Function;
   node: EditableAntdTreeNode;
   deleteNode?: {
@@ -40,12 +40,12 @@ type EditableTreeTitleProps = {
 
 export type TEditableTreeTitle = Omit<
   EditableTreeTitleProps,
-  "treeData" | "setTreeData" | "node" | "expandKey"
+  "treeData" | "node" | "expandKey"
 >;
 
 export const EditableTreeTitle = ({
   treeData,
-  setTreeData,
+  updateTreeData,
   expandKey,
   node,
   deleteNode,
@@ -71,7 +71,7 @@ export const EditableTreeTitle = ({
       isLeaf: true,
       parent: node.key,
     });
-    setTreeData([...treeData]);
+    updateTreeData([...treeData]);
   };
 
   const handleCreateParentClick = () => {
@@ -89,12 +89,12 @@ export const EditableTreeTitle = ({
       parent: node.key,
       children: [],
     });
-    setTreeData([...treeData]);
+    updateTreeData([...treeData]);
   };
 
   const handleDeleteClick = () => {
     deleteTreeNode(treeData, node.key);
-    setTreeData([...treeData]);
+    updateTreeData([...treeData]);
 
     if (deleteNode?.event) {
       deleteNode.event(node);
@@ -125,7 +125,7 @@ export const EditableTreeTitle = ({
     }
 
     handleEditToggle(true);
-    setTreeData([...treeData]);
+    updateTreeData([...treeData]);
   };
 
   const handleEditToggle = (onOpen: boolean) => {

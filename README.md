@@ -27,11 +27,7 @@
 $ npm editable-antd-tree
 ```
 
-```bash
-$ yarn editable-antd-tree
-```
-
-> The package can be found [here](https://www.npmjs.com/package/editable-antd-tree).
+_The package can be found [here](https://www.npmjs.com/package/editable-antd-tree)._
 
 ## 🔨 Usage
 
@@ -92,74 +88,80 @@ By downloading this package, there is a direct compatability with `typescript`.
 
 <table>
   <thead>
-    <tr> 
+    <tr>
       <th>Property</th>
       <th>Description</th>
-      <th style="text-align: center">Type</th>
+      <th>Type</th>
       <th>Required</th>
-    </tr> 
+    </tr>
   </thead>
   <tbody>
-    <tr> 
-      <th>treeData</th>
-      <th>This property indicates the inital tree data. (There is a section which shows all the fields of TreeData fields)</th>
-      <th style="text-align: center">EditableTreeNode[]</th>
-      <th style="text-align: center">yes</th>
-    </tr> 
-    <tr> 
-      <th>switcherIcon</th>
-      <th>This property controls the switcher icon, the icon that expands or collapse a parent node.</th>
-      <th style="text-align: center">React.ReactNode</th>
-      <th style="text-align: center">no</th>
-    </tr> 
-    <tr> 
-      <th>size</th>
-      <th>This property controls the size of the tree.</th>
-      <th style="text-align: center">xs | sm | md | lg | xl</th>
-      <th style="text-align: center">no</th>
-    </tr> 
-    <tr> 
-      <th>loadData</th>
-      <th>This property is a Function that runs whenever a TreeNode is not a leaf node & it has no children. Its core function is to load data async and replace them into the TreeNode children field.</th>
-      <th style="text-align: center">Function</th>
-      <th style="text-align: center">no</th>
-    </tr> 
-    <tr> 
-      <th>createRootLeaf</th>
-      <th>This object contains some properties that are explained in the sections below.</th>
-      <th style="text-align: center">Object</th>
-      <th style="text-align: center">no</th>
-    </tr> 
-    <tr> 
-      <th>createRootParent</th>
-      <th>This object contains some properties that are explained in the sections below.</th>
-      <th style="text-align: center">Object</th>
-      <th style="text-align: center">no</th>
-    </tr> 
-    <tr> 
-      <th>deleteNode</th>
-      <th>This object contains some properties that are explained in the sections below.</th>
-      <th style="text-align: center">Object</th>
-      <th style="text-align: center">no</th>
-    </tr>    
-    <tr> 
-      <th>updateNode</th>
-      <th>This object contains some properties that are explained in the sections below.</th>
-      <th style="text-align: center">Object</th>
-      <th style="text-align: center">no</th>
-    </tr>    
-    <tr> 
-      <th>createLeaf</th>
-      <th>This object contains some properties that are explained in the sections below.</th>
-      <th style="text-align: center">Object</th>
-      <th style="text-align: center">no</th>
-    </tr>     
-    <tr> 
-      <th>createParent</th>
-      <th>This object contains some properties that are explained in the sections below.</th>
-      <th style="text-align: center">Object</th>
-      <th style="text-align: center">no</th>
-    </tr> 
+    <tr>
+      <td><code>treeData</code></td>
+      <td>Initial tree data. See section below for all fields of TreeData.</td>
+      <td><code>EditableTreeNode[]</code></td>
+      <td align="center">Yes</td>
+    </tr>
+    <tr>
+      <td><code>onTreeChange</code></td>
+      <td>Executes uppon any tree data change.</td>
+      <td><code>Function</code></td>
+      <td align="center">No</td>
+    </tr>
+    <tr>
+      <td><code>switcherIcon</code></td>
+      <td>Controls the switcher icon, used to expand or collapse parent nodes.</td>
+      <td><code>React.ReactNode</code></td>
+      <td align="center">No</td>
+    </tr>
+    <tr>
+      <td><code>size</code></td>
+      <td>Controls the size of the tree.</td>
+      <td><code>xs</code>, <code>sm</code>, <code>md</code>, <code>lg</code>, <code>xl</code></td>
+      <td align="center">No</td>
+    </tr>
+    <tr>
+      <td><code>loadData</code></td>
+      <td>Function triggered when a non-leaf TreeNode lacks children. Loads data asynchronously and replaces TreeNode's children.</td>
+      <td><code>Function</code></td>
+      <td align="center">No</td>
+    </tr>
+    <tr>
+      <td><code>createRootLeaf</code></td>
+      <td>Contains properties explained in the sections below.</td>
+      <td><code>Object</code></td>
+      <td align="center">No</td>
+    </tr>
+    <tr>
+      <td><code>createRootParent</code></td>
+      <td>Contains properties explained in the sections below.</td>
+      <td><code>Object</code></td>
+      <td align="center">No</td>
+    </tr>
+    <tr>
+      <td><code>deleteNode</code></td>
+      <td>Contains properties explained in the sections below.</td>
+      <td><code>Object</code></td>
+      <td align="center">No</td>
+    </tr>
+    <tr>
+      <td><code>updateNode</code></td>
+      <td>Contains properties explained in the sections below.</td>
+      <td><code>Object</code></td>
+      <td align="center">No</td>
+    </tr>
+    <tr>
+      <td><code>createLeaf</code></td>
+      <td>Contains properties explained in the sections below.</td>
+      <td><code>Object</code></td>
+      <td align="center">No</td>
+    </tr>
+    <tr>
+      <td><code>createParent</code></td>
+      <td>Contains properties explained in the sections below.</td>
+      <td><code>Object</code></td>
+      <td align="center">No</td>
+    </tr>
   </tbody>
 </table>
 
@@ -167,32 +169,32 @@ By downloading this package, there is a direct compatability with `typescript`.
 
 <table>
   <thead>
-    <tr> 
+    <tr>
       <th>Property</th>
       <th>Description</th>
       <th style="text-align: center">Type</th>
       <th>Required</th>
-    </tr> 
+    </tr>
   </thead>
   <tbody>
-    <tr> 
-      <th>caption</th>
-      <th>This property shows what should be displayed when a user hovers over the action.</th>
-      <th style="text-align: center">string</th>
-      <th style="text-align: center">no</th>
-    </tr> 
-    <tr> 
-      <th>disable</th>
-      <th>This property indicated if the action should be disabled.</th>
-      <th style="text-align: center">boolean</th>
-      <th style="text-align: center">no</th>
-    </tr> 
-    <tr> 
-      <th>event</th>
-      <th>This property is a Function that runs after the action has been pressed.</th>
-      <th style="text-align: center">Function</th>
-      <th style="text-align: center">no</th>
-    </tr> 
+    <tr>
+      <td><code>caption</code></td>
+      <td>This property shows what should be displayed when a user hovers over the action.</td>
+      <td style="text-align: center"><code>string</code></td>
+      <td style="text-align: center">No</td>
+    </tr>
+    <tr>
+      <td><code>disable</code></td>
+      <td>This property indicates if the action should be disabled.</td>
+      <td style="text-align: center"><code>boolean</code></td>
+      <td style="text-align: center">No</td>
+    </tr>
+    <tr>
+      <td><code>event</code></td>
+      <td>This property is a Function that runs after the action has been pressed.</td>
+      <td style="text-align: center"><code>Function</code></td>
+      <td style="text-align: center">No</td>
+    </tr>
   </tbody>
 </table>
 
@@ -200,32 +202,32 @@ By downloading this package, there is a direct compatability with `typescript`.
 
 <table>
   <thead>
-    <tr> 
+    <tr>
       <th>Property</th>
       <th>Description</th>
       <th style="text-align: center">Type</th>
       <th>Required</th>
-    </tr> 
+    </tr>
   </thead>
   <tbody>
-    <tr> 
-      <th>caption</th>
-      <th>This property shows what should be displayed when a user hovers over the action.</th>
-      <th style="text-align: center">string</th>
-      <th style="text-align: center">no</th>
-    </tr> 
-    <tr> 
-      <th>disable</th>
-      <th>This property indicated if the action should be disabled.</th>
-      <th style="text-align: center">boolean</th>
-      <th style="text-align: center">no</th>
-    </tr> 
-    <tr> 
-      <th>event</th>
-      <th>This property is a Function that runs after the action has been pressed.</th>
-      <th style="text-align: center">Function</th>
-      <th style="text-align: center">no</th>
-    </tr> 
+    <tr>
+      <td><code>caption</code></td>
+      <td>This property shows what should be displayed when a user hovers over the action.</td>
+      <td style="text-align: center"><code>string</code></td>
+      <td style="text-align: center">No</td>
+    </tr>
+    <tr>
+      <td><code>disable</code></td>
+      <td>This property indicates if the action should be disabled.</td>
+      <td style="text-align: center"><code>boolean</code></td>
+      <td style="text-align: center">No</td>
+    </tr>
+    <tr>
+      <td><code>event</code></td>
+      <td>This property is a Function that runs after the action has been pressed.</td>
+      <td style="text-align: center"><code>Function</code></td>
+      <td style="text-align: center">No</td>
+    </tr>
   </tbody>
 </table>
 
@@ -233,32 +235,32 @@ By downloading this package, there is a direct compatability with `typescript`.
 
 <table>
   <thead>
-    <tr> 
+    <tr>
       <th>Property</th>
       <th>Description</th>
       <th style="text-align: center">Type</th>
       <th>Required</th>
-    </tr> 
+    </tr>
   </thead>
   <tbody>
-    <tr> 
-      <th>caption</th>
-      <th>This property shows what should be displayed when a user hovers over the action.</th>
-      <th style="text-align: center">string</th>
-      <th style="text-align: center">no</th>
-    </tr> 
-    <tr> 
-      <th>disable</th>
-      <th>This property indicated if the action should be disabled.</th>
-      <th style="text-align: center">boolean | Function</th>
-      <th style="text-align: center">no</th>
-    </tr> 
-    <tr> 
-      <th>event</th>
-      <th>This property is a Function that runs after the action has been pressed.</th>
-      <th style="text-align: center">Function</th>
-      <th style="text-align: center">no</th>
-    </tr> 
+    <tr>
+      <td><code>caption</code></td>
+      <td>This property shows what should be displayed when a user hovers over the action.</td>
+      <td style="text-align: center"><code>string</code></td>
+      <td style="text-align: center">No</td>
+    </tr>
+    <tr>
+      <td><code>disable</code></td>
+      <td>This property indicates if the action should be disabled.</td>
+      <td style="text-align: center"><code>boolean</code> | <code>Function</code></td>
+      <td style="text-align: center">No</td>
+    </tr>
+    <tr>
+      <td><code>event</code></td>
+      <td>This property is a Function that runs after the action has been pressed.</td>
+      <td style="text-align: center"><code>Function</code></td>
+      <td style="text-align: center">No</td>
+    </tr>
   </tbody>
 </table>
 
@@ -266,32 +268,32 @@ By downloading this package, there is a direct compatability with `typescript`.
 
 <table>
   <thead>
-    <tr> 
+    <tr>
       <th>Property</th>
       <th>Description</th>
       <th style="text-align: center">Type</th>
       <th>Required</th>
-    </tr> 
+    </tr>
   </thead>
   <tbody>
-    <tr> 
-      <th>caption</th>
-      <th>This property shows what should be displayed when a user hovers over the action.</th>
-      <th style="text-align: center">string</th>
-      <th style="text-align: center">no</th>
-    </tr> 
-    <tr> 
-      <th>disable</th>
-      <th>This property indicated if the action should be disabled.</th>
-      <th style="text-align: center">boolean | Function</th>
-      <th style="text-align: center">no</th>
-    </tr> 
-    <tr> 
-      <th>event</th>
-      <th>This property is a Function that runs after the action has been pressed.</th>
-      <th style="text-align: center">Function</th>
-      <th style="text-align: center">no</th>
-    </tr> 
+    <tr>
+      <td><code>caption</code></td>
+      <td>This property shows what should be displayed when a user hovers over the action.</td>
+      <td style="text-align: center"><code>string</code></td>
+      <td style="text-align: center">No</td>
+    </tr>
+    <tr>
+      <td><code>disable</code></td>
+      <td>This property indicates if the action should be disabled.</td>
+      <td style="text-align: center"><code>boolean</code> | <code>Function</code></td>
+      <td style="text-align: center">No</td>
+    </tr>
+    <tr>
+      <td><code>event</code></td>
+      <td>This property is a Function that runs after the action has been pressed.</td>
+      <td style="text-align: center"><code>Function</code></td>
+      <td style="text-align: center">No</td>
+    </tr>
   </tbody>
 </table>
 
@@ -299,32 +301,32 @@ By downloading this package, there is a direct compatability with `typescript`.
 
 <table>
   <thead>
-    <tr> 
+    <tr>
       <th>Property</th>
       <th>Description</th>
       <th style="text-align: center">Type</th>
       <th>Required</th>
-    </tr> 
+    </tr>
   </thead>
   <tbody>
-    <tr> 
-      <th>caption</th>
-      <th>This property shows what should be displayed when a user hovers over the action.</th>
-      <th style="text-align: center">string</th>
-      <th style="text-align: center">no</th>
-    </tr> 
-    <tr> 
-      <th>disable</th>
-      <th>This property indicated if the action should be disabled.</th>
-      <th style="text-align: center">boolean | Function</th>
-      <th style="text-align: center">no</th>
-    </tr> 
-    <tr> 
-      <th>event</th>
-      <th>This property is a Function that runs after the action has been pressed.</th>
-      <th style="text-align: center">Function</th>
-      <th style="text-align: center">no</th>
-    </tr> 
+    <tr>
+      <td><code>caption</code></td>
+      <td>This property shows what should be displayed when a user hovers over the action.</td>
+      <td style="text-align: center"><code>string</code></td>
+      <td style="text-align: center">No</td>
+    </tr>
+    <tr>
+      <td><code>disable</code></td>
+      <td>This property indicates if the action should be disabled.</td>
+      <td style="text-align: center"><code>boolean</code> | <code>Function</code></td>
+      <td style="text-align: center">No</td>
+    </tr>
+    <tr>
+      <td><code>event</code></td>
+      <td>This property is a Function that runs after the action has been pressed.</td>
+      <td style="text-align: center"><code>Function</code></td>
+      <td style="text-align: center">No</td>
+    </tr>
   </tbody>
 </table>
 
@@ -332,32 +334,32 @@ By downloading this package, there is a direct compatability with `typescript`.
 
 <table>
   <thead>
-    <tr> 
+    <tr>
       <th>Property</th>
       <th>Description</th>
       <th style="text-align: center">Type</th>
       <th>Required</th>
-    </tr> 
+    </tr>
   </thead>
   <tbody>
-    <tr> 
-      <th>caption</th>
-      <th>This property shows what should be displayed when a user hovers over the action.</th>
-      <th style="text-align: center">string</th>
-      <th style="text-align: center">no</th>
-    </tr> 
-    <tr> 
-      <th>disable</th>
-      <th>This property indicated if the action should be disabled.</th>
-      <th style="text-align: center">boolean | Function</th>
-      <th style="text-align: center">no</th>
-    </tr> 
-    <tr> 
-      <th>event</th>
-      <th>This property is a Function that runs after the action has been pressed.</th>
-      <th style="text-align: center">Function</th>
-      <th style="text-align: center">no</th>
-    </tr> 
+    <tr>
+      <td><code>caption</code></td>
+      <td>This property shows what should be displayed when a user hovers over the action.</td>
+      <td style="text-align: center"><code>string</code></td>
+      <td style="text-align: center">No</td>
+    </tr>
+    <tr>
+      <td><code>disable</code></td>
+      <td>This property indicates if the action should be disabled.</td>
+      <td style="text-align: center"><code>boolean</code> | <code>Function</code></td>
+      <td style="text-align: center">No</td>
+    </tr>
+    <tr>
+      <td><code>event</code></td>
+      <td>This property is a Function that runs after the action has been pressed.</td>
+      <td style="text-align: center"><code>Function</code></td>
+      <td style="text-align: center">No</td>
+    </tr>
   </tbody>
 </table>
 
@@ -367,37 +369,37 @@ By downloading this package, there is a direct compatability with `typescript`.
 
 <table>
   <thead>
-    <tr> 
+    <tr>
       <th>Property</th>
       <th>Description</th>
       <th style="text-align: center">Type</th>
-      <th style="text-align: center">Required</th>
-    </tr> 
+      <th>Required</th>
+    </tr>
   </thead>
   <tbody>
-    <tr> 
-      <th>key</th>
-      <th>This field is used as a unique identifier.</th>
-      <th style="text-align: center">string</th>
-      <th style="text-align: center">yes</th>
+    <tr>
+      <td><code>key</code></td>
+      <td>This field is used as a unique identifier.</td>
+      <td style="text-align: center"><code>string</code></td>
+      <td style="text-align: center">Yes</td>
     </tr> 
-    <tr> 
-      <th>title</th>
-      <th>This field is displayed in the tree.</th>
-      <th style="text-align: center">string</th>
-      <th style="text-align: center">no</th>
+    <tr>
+      <td><code>title</code></td>
+      <td>This field is displayed in the tree.</td>
+      <td style="text-align: center"><code>string</code></td>
+      <td style="text-align: center">No</td>
     </tr> 
-    <tr> 
-      <th>parent</th>
-      <th>This field points to the parent key.</th>
-      <th style="text-align: center">string</th>
-      <th style="text-align: center">no</th>
+    <tr>
+      <td><code>parent</code></td>
+      <td>This field points to the parent key.</td>
+      <td style="text-align: center"><code>string</code></td>
+      <td style="text-align: center">No</td>
     </tr> 
-    <tr> 
-      <th>children</th>
-      <th>This field contains more nested tree nodes.</th>
-      <th style="text-align: center">EditableTreeNode[]</th>
-      <th style="text-align: center">no</th>
+    <tr>
+      <td><code>children</code></td>
+      <td>This field contains more nested tree nodes.</td>
+      <td style="text-align: center"><code>EditableTreeNode[]</code></td>
+      <td style="text-align: center">No</td>
     </tr> 
   </tbody>
 </table>
@@ -413,4 +415,4 @@ Special acknowledgements to the following packages:
 
 ## 🎙 Conclusion
 
-I tried some npm packages but they did not fit my use case, so I was inspired by the above packages and created the `editable-antd-tree`.
+After experimenting with various npm packages, none of them quite met my specific requirements. However, drawing inspiration from the packages mentioned earlier, I took it upon myself to develop a solution tailored to my needs, resulting in the creation of the editable-antd-tree package.
