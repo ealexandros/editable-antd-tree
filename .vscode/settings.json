@@ -1,9 +1,19 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
-  "cSpell.enabled": false,
+
+  "files.trimFinalNewlines": true,
+  "files.insertFinalNewline": true,
+  "files.associations": {
+    "*.svg": "html",
+    "*.css": "tailwindcss",
+    "*.scss": "tailwindcss"
+  },
+
   "editor.codeActionsOnSave": {
-    "source.fixAll": true,
-    "source.organizeImports": true
-  }
+    "source.organizeImports": "always",
+    "source.sortPackageJson": "always",
+    "source.fixAll.eslint": "always"
+  },
+  "editor.tabSize": 2
 }
