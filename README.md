@@ -9,11 +9,12 @@
 <br/>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/node-%3E%3D16.0.0-blue" alt="node version" />
-  <img src="https://img.shields.io/badge/pnpm-^7.0.0-blue?logo=pnpm" alt="pnpm version" />
-  <img src="https://img.shields.io/badge/react->%3D16.9.0-lighgreen?logo=react" alt="react version" />
-  <img src="https://img.shields.io/badge/antd-^5.0.0-lighgreen" alt="antd version" />
+  <img src="https://img.shields.io/badge/bun-^1.3.0-blue?logo=bun" alt="bun version" />
+  <img src="https://img.shields.io/badge/react->%3D19.0.0-lighgreen?logo=react" alt="react version" />
+  <img src="https://img.shields.io/badge/antd-^6.0.0-lighgreen" alt="antd version" />
 </p>
+
+> ⚠️ Maintenance Notice: This library is no longer actively updated. It may still work, but future support is not guaranteed.
 
 <br/>
 
@@ -24,10 +25,18 @@
 ## 📦 Install
 
 ```bash
-$ npm editable-antd-tree
-```
+# npm
+npm install editable-antd-tree antd lucide-react
 
-_The package can be found [here](https://www.npmjs.com/package/editable-antd-tree)._
+# yarn
+yarn add editable-antd-tree antd lucide-react
+
+# pnpm
+pnpm add editable-antd-tree antd lucide-react
+
+# bun
+bun add editable-antd-tree antd lucide-react
+```
 
 ## 🔨 Usage
 
@@ -62,12 +71,11 @@ const tree = [
 ];
 ```
 
-A simple example of this package can be seen below.
+### Basic Example
 
-```js
+```jsx
 import { EditableAntdTree } from "editable-antd-tree";
-
-import "editable-antd-tree/dist/esm/output.css"; // load style
+import "editable-antd-tree/index.css"; // Import compiled styles
 
 const initTree = []; // 👀 example above
 
@@ -76,6 +84,86 @@ const App = () => (
     <EditableAntdTree treeData={initTree} />
   </>
 );
+```
+
+### 🎨 Styling Options
+
+This package uses **Tailwind CSS** for styling. You have two options for integrating it into your project:
+
+#### Option 1: Import Compiled CSS (Recommended for most users)
+
+This is the simplest approach and works out of the box:
+
+```jsx
+import "editable-antd-tree/index.css";
+```
+
+#### Option 2: Use Your Tailwind Configuration (Advanced)
+
+If you're already using Tailwind CSS in your project and want to share the same Tailwind build:
+
+1. **Add the package to your Tailwind content paths:**
+
+```js
+// tailwind.config.js
+export default {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+    "./node_modules/editable-antd-tree/dist/**/*.{js,mjs}", // Add this line
+  ],
+  // ... rest of your config
+};
+```
+
+2. **Don't import the CSS file** - your Tailwind build will include the necessary styles
+
+### 🎨 Custom Styling
+
+You can customize the appearance using the `classNames` prop:
+
+```jsx
+<EditableAntdTree
+  treeData={initTree}
+  classNames={{
+    nodeTitle: "font-bold text-blue-600",
+    nodeActions: "space-x-2",
+    input: "border-2 border-blue-400",
+    confirmBtn: "text-green-700",
+    cancelBtn: "text-red-700",
+    // ... more customization options
+  }}
+/>
+```
+
+### 🎭 Custom Icons
+
+You can customize all action icons by passing React elements to the `icons` prop:
+
+```jsx
+import { EditableAntdTree } from "editable-antd-tree";
+import { FolderPlus, FilePlus, Edit, Trash2, CheckCircle, XCircle } from "lucide-react";
+
+<EditableAntdTree
+  treeData={initTree}
+  icons={{
+    createParent: <FolderPlus size={16} />,
+    createLeaf: <FilePlus size={16} />,
+    update: <Edit size={16} />,
+    delete: <Trash2 size={16} />,
+    confirm: <CheckCircle size={16} />,
+    cancel: <XCircle size={16} />,
+  }}
+/>;
+```
+
+You can use any icon library or even custom SVGs:
+
+```jsx
+icons={{
+  createParent: <svg>...</svg>,
+  createLeaf: <img src="/custom-icon.png" alt="" />,
+  // ... etc
+}}
 ```
 
 ### Typescipt
@@ -99,7 +187,7 @@ By downloading this package, there is a direct compatability with `typescript`.
     <tr>
       <td><code>treeData</code></td>
       <td>Initial tree data. See section below for all fields of TreeData.</td>
-      <td><code>EditableTreeNode[]</code></td>
+      <td><code>EditableAntdTreeNode[]</code></td>
       <td align="center">Yes</td>
     </tr>
     <tr>
@@ -162,6 +250,30 @@ By downloading this package, there is a direct compatability with `typescript`.
       <td><code>Object</code></td>
       <td align="center">No</td>
     </tr>
+    <tr>
+      <td><code>icons</code></td>
+      <td>Customize the icons used for all actions (createParent, createLeaf, update, delete, confirm, cancel). Pass any React elements.</td>
+      <td><code>Partial&lt;IconConfig&gt;</code></td>
+      <td align="center">No</td>
+    </tr>
+    <tr>
+      <td><code>showActionsOnHover</code></td>
+      <td>If true, action buttons are only visible when hovering over a node. If false, they are always visible.</td>
+      <td><code>boolean</code></td>
+      <td align="center">No</td>
+    </tr>
+    <tr>
+      <td><code>hideRootControls</code></td>
+      <td>If true, hides the footer controls for creating root nodes.</td>
+      <td><code>boolean</code></td>
+      <td align="center">No</td>
+    </tr>
+    <tr>
+      <td><code>classNames</code></td>
+      <td>Custom CSS class names for styling various parts of the tree (nodeTitle, nodeActions, input, buttons, root, tree, footer, etc.).</td>
+      <td><code>Object</code></td>
+      <td align="center">No</td>
+    </tr>
   </tbody>
 </table>
 
@@ -178,19 +290,19 @@ By downloading this package, there is a direct compatability with `typescript`.
   </thead>
   <tbody>
     <tr>
-      <td><code>caption</code></td>
+      <td><code>label</code></td>
       <td>This property shows what should be displayed when a user hovers over the action.</td>
       <td style="text-align: center"><code>string</code></td>
       <td style="text-align: center">No</td>
     </tr>
     <tr>
-      <td><code>disable</code></td>
+      <td><code>disabled</code></td>
       <td>This property indicates if the action should be disabled.</td>
       <td style="text-align: center"><code>boolean</code></td>
       <td style="text-align: center">No</td>
     </tr>
     <tr>
-      <td><code>event</code></td>
+      <td><code>onAction</code></td>
       <td>This property is a Function that runs after the action has been pressed.</td>
       <td style="text-align: center"><code>Function</code></td>
       <td style="text-align: center">No</td>
@@ -211,19 +323,19 @@ By downloading this package, there is a direct compatability with `typescript`.
   </thead>
   <tbody>
     <tr>
-      <td><code>caption</code></td>
+      <td><code>label</code></td>
       <td>This property shows what should be displayed when a user hovers over the action.</td>
       <td style="text-align: center"><code>string</code></td>
       <td style="text-align: center">No</td>
     </tr>
     <tr>
-      <td><code>disable</code></td>
+      <td><code>disabled</code></td>
       <td>This property indicates if the action should be disabled.</td>
       <td style="text-align: center"><code>boolean</code></td>
       <td style="text-align: center">No</td>
     </tr>
     <tr>
-      <td><code>event</code></td>
+      <td><code>onAction</code></td>
       <td>This property is a Function that runs after the action has been pressed.</td>
       <td style="text-align: center"><code>Function</code></td>
       <td style="text-align: center">No</td>
@@ -244,19 +356,19 @@ By downloading this package, there is a direct compatability with `typescript`.
   </thead>
   <tbody>
     <tr>
-      <td><code>caption</code></td>
+      <td><code>label</code></td>
       <td>This property shows what should be displayed when a user hovers over the action.</td>
       <td style="text-align: center"><code>string</code></td>
       <td style="text-align: center">No</td>
     </tr>
     <tr>
-      <td><code>disable</code></td>
+      <td><code>disabled</code></td>
       <td>This property indicates if the action should be disabled.</td>
       <td style="text-align: center"><code>boolean</code> | <code>Function</code></td>
       <td style="text-align: center">No</td>
     </tr>
     <tr>
-      <td><code>event</code></td>
+      <td><code>onAction</code></td>
       <td>This property is a Function that runs after the action has been pressed.</td>
       <td style="text-align: center"><code>Function</code></td>
       <td style="text-align: center">No</td>
@@ -277,19 +389,19 @@ By downloading this package, there is a direct compatability with `typescript`.
   </thead>
   <tbody>
     <tr>
-      <td><code>caption</code></td>
+      <td><code>label</code></td>
       <td>This property shows what should be displayed when a user hovers over the action.</td>
       <td style="text-align: center"><code>string</code></td>
       <td style="text-align: center">No</td>
     </tr>
     <tr>
-      <td><code>disable</code></td>
+      <td><code>disabled</code></td>
       <td>This property indicates if the action should be disabled.</td>
       <td style="text-align: center"><code>boolean</code> | <code>Function</code></td>
       <td style="text-align: center">No</td>
     </tr>
     <tr>
-      <td><code>event</code></td>
+      <td><code>onAction</code></td>
       <td>This property is a Function that runs after the action has been pressed.</td>
       <td style="text-align: center"><code>Function</code></td>
       <td style="text-align: center">No</td>
@@ -310,19 +422,19 @@ By downloading this package, there is a direct compatability with `typescript`.
   </thead>
   <tbody>
     <tr>
-      <td><code>caption</code></td>
+      <td><code>label</code></td>
       <td>This property shows what should be displayed when a user hovers over the action.</td>
       <td style="text-align: center"><code>string</code></td>
       <td style="text-align: center">No</td>
     </tr>
     <tr>
-      <td><code>disable</code></td>
+      <td><code>disabled</code></td>
       <td>This property indicates if the action should be disabled.</td>
       <td style="text-align: center"><code>boolean</code> | <code>Function</code></td>
       <td style="text-align: center">No</td>
     </tr>
     <tr>
-      <td><code>event</code></td>
+      <td><code>onAction</code></td>
       <td>This property is a Function that runs after the action has been pressed.</td>
       <td style="text-align: center"><code>Function</code></td>
       <td style="text-align: center">No</td>
@@ -343,19 +455,19 @@ By downloading this package, there is a direct compatability with `typescript`.
   </thead>
   <tbody>
     <tr>
-      <td><code>caption</code></td>
+      <td><code>label</code></td>
       <td>This property shows what should be displayed when a user hovers over the action.</td>
       <td style="text-align: center"><code>string</code></td>
       <td style="text-align: center">No</td>
     </tr>
     <tr>
-      <td><code>disable</code></td>
+      <td><code>disabled</code></td>
       <td>This property indicates if the action should be disabled.</td>
       <td style="text-align: center"><code>boolean</code> | <code>Function</code></td>
       <td style="text-align: center">No</td>
     </tr>
     <tr>
-      <td><code>event</code></td>
+      <td><code>onAction</code></td>
       <td>This property is a Function that runs after the action has been pressed.</td>
       <td style="text-align: center"><code>Function</code></td>
       <td style="text-align: center">No</td>
@@ -398,7 +510,7 @@ By downloading this package, there is a direct compatability with `typescript`.
     <tr>
       <td><code>children</code></td>
       <td>This field contains more nested tree nodes.</td>
-      <td style="text-align: center"><code>EditableTreeNode[]</code></td>
+      <td style="text-align: center"><code>EditableAntdTreeNode[]</code></td>
       <td style="text-align: center">No</td>
     </tr> 
   </tbody>

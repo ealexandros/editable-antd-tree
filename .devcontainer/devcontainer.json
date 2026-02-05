@@ -1,0 +1,25 @@
+{
+  "name": "editable-antd-tree",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node",
+  "runArgs": ["--name", "editable-antd-tree"],
+  "forwardPorts": [3000, 6006],
+  "postCreateCommand": "./.devcontainer/post-create.sh",
+  "remoteEnv": {
+    "SSH_AUTH_SOCK": ""
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss"
+      ],
+      "settings": {}
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "configureZshAsDefaultShell": true
+    }
+  }
+}
