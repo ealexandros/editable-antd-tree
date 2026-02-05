@@ -45,11 +45,7 @@ export const loadTreeChildren = ({
 
     return {
       ...node,
-      children: loadTreeChildren({
-        tree: node.children,
-        targetKey,
-        newChildren,
-      }),
+      children: loadTreeChildren({ tree: node.children, targetKey, newChildren }),
     };
   });
 };
